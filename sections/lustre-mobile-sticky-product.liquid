@@ -1,0 +1,46 @@
+{%- if request.page_type == 'product' and section.settings.show_sticky_button -%}
+  <div class="lustre-mobile-sticky-product color-{{ section.settings.color_scheme }} gradient" data-lustre-sticky-product>
+    <div class="lustre-mobile-sticky-product__meta">
+      <strong>{{ product.title }}</strong>
+      <span data-lustre-sticky-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+    </div>
+    <button
+      type="button"
+      class="button button--primary"
+      data-lustre-sticky-add
+      {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+    >
+      {%- if product.selected_or_first_available_variant.available -%}
+        {{ section.settings.button_label }}
+      {%- else -%}
+        {{ 'products.product.sold_out' | t }}
+      {%- endif -%}
+    </button>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Mobile sticky product",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_sticky_button",
+      "label": "Show sticky add to cart",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to bag"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

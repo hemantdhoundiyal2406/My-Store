@@ -1,0 +1,148 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "icon_text": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "truck",
+            "heading_1": "Free shipping over $75",
+            "icon_2": "return",
+            "heading_2": "Easy 30-day returns",
+            "icon_3": "lock",
+            "heading_3": "Secure checkout"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "rating",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_text",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail_slider",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "tabs": {
+      "type": "lustre-product-tabs",
+      "blocks": {
+        "details": {
+          "type": "tab",
+          "settings": {
+            "heading": "Details",
+            "content": "<p>Add materials, ingredients, fit, or other useful product details here.</p>"
+          }
+        },
+        "size_guide": {
+          "type": "tab",
+          "settings": {
+            "heading": "Size guide",
+            "content": "<p>Assign a size guide page here from the theme editor, or replace this text with your measurements.</p>"
+          }
+        },
+        "delivery": {
+          "type": "tab",
+          "settings": {
+            "heading": "Delivery & returns",
+            "content": "<p>Orders are dispatched within 1-2 business days. Easy returns are accepted within 30 days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "details",
+        "size_guide",
+        "delivery"
+      ],
+      "settings": {
+        "description_label": "Description",
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 64
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Complete the edit",
+        "heading_size": "h1",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "columns_mobile": "2",
+        "padding_top": 48,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "main",
+    "tabs",
+    "related-products"
+  ]
+}

@@ -1,0 +1,152 @@
+<section
+  class="lustre-testimonials color-{{ section.settings.color_scheme }} gradient"
+  style="--lustre-padding-top: {{ section.settings.padding_top }}px; --lustre-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="page-width">
+    <header class="lustre-section-heading lustre-section-heading--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="lustre-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+    </header>
+
+    <div class="lustre-testimonials__track">
+      {%- for block in section.blocks -%}
+        <figure class="lustre-testimonial" {{ block.shopify_attributes }}>
+          <div class="lustre-testimonial__stars" aria-label="{{ block.settings.rating }} out of 5 stars">
+            {%- for i in (1..5) -%}
+              <span class="{% if i > block.settings.rating %}is-empty{% endif %}">
+                {% render 'lustre-icon', name: 'star', size: 15 %}
+              </span>
+            {%- endfor -%}
+          </div>
+          <blockquote>{{ block.settings.quote }}</blockquote>
+          <figcaption>
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 120
+                | image_tag: loading: 'lazy', width: 48, height: 48, alt: block.settings.author
+              }}
+            {%- endif -%}
+            <span>
+              <strong>{{ block.settings.author }}</strong>
+              <small>{{ block.settings.detail }}</small>
+            </span>
+          </figcaption>
+        </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lustre testimonials",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Loved by you"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Notes from our community"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 72
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Beautifully made, thoughtfully packaged, and even better in person."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Maya R."
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detail",
+          "default": "Verified customer"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Author image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Lustre testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

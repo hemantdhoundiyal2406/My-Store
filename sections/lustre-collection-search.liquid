@@ -1,0 +1,76 @@
+<section
+  class="lustre-collection-search color-{{ section.settings.color_scheme }} gradient"
+  style="--lustre-padding-top: {{ section.settings.padding_top }}px; --lustre-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="page-width">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="lustre-collection-search__form">
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+      <span>{% render 'lustre-icon', name: 'search', size: 19 %}</span>
+      <input
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ section.settings.placeholder }}"
+        aria-label="{{ section.settings.placeholder }}"
+      >
+      <button class="button button--primary" type="submit">{{ section.settings.button_label }}</button>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lustre collection search",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Search products..."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Search"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lustre collection search"
+    }
+  ]
+}
+{% endschema %}

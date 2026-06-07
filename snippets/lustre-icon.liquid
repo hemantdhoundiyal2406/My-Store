@@ -1,0 +1,45 @@
+{%- liquid
+  assign icon_size = size | default: 20
+-%}
+<svg
+  class="lustre-icon lustre-icon--{{ name }}"
+  width="{{ icon_size }}"
+  height="{{ icon_size }}"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- case name -%}
+    {%- when 'home' -%}
+      <path d="m3 11 9-8 9 8"></path><path d="M5 10v10h14V10M9 20v-6h6v6"></path>
+    {%- when 'grid' -%}
+      <rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect>
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.4-3.4"></path>
+    {%- when 'user' -%}
+      <circle cx="12" cy="8" r="4"></circle><path d="M4.5 21a7.5 7.5 0 0 1 15 0"></path>
+    {%- when 'heart' -%}
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"></path>
+    {%- when 'cart' -%}
+      <path d="M6 8h12l-1 12H7L6 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path>
+    {%- when 'arrow-right' -%}
+      <path d="M5 12h14M13 6l6 6-6 6"></path>
+    {%- when 'star' -%}
+      <path d="m12 2.8 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9L6.4 20l1.1-6.2L3 9.4l6.2-.9L12 2.8Z"></path>
+    {%- when 'shield' -%}
+      <path d="M12 3 5 6v5c0 4.6 2.9 8.4 7 10 4.1-1.6 7-5.4 7-10V6l-7-3Z"></path><path d="m9 12 2 2 4-4"></path>
+    {%- when 'truck' -%}
+      <path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="19" r="2"></circle><circle cx="18" cy="19" r="2"></circle>
+    {%- when 'refresh' -%}
+      <path d="M20 7v5h-5"></path><path d="M4 17v-5h5"></path><path d="M6.1 8A7 7 0 0 1 18 6l2 1M4 17l2 1a7 7 0 0 0 11.9-2"></path>
+    {%- when 'chevron-down' -%}
+      <path d="m6 9 6 6 6-6"></path>
+    {%- when 'check' -%}
+      <path d="m5 12 4 4L19 6"></path>
+  {%- endcase -%}
+</svg>

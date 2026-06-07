@@ -1,0 +1,62 @@
+{%- if section.settings.show_navigation -%}
+  <nav class="lustre-mobile-nav color-{{ section.settings.color_scheme }} gradient" aria-label="Quick navigation">
+    <a href="{{ routes.root_url }}" class="{% if request.page_type == 'index' %}is-active{% endif %}">
+      {% render 'lustre-icon', name: 'home', size: 21 %}
+      <span>Home</span>
+    </a>
+    <a href="{{ section.settings.shop_link | default: routes.all_products_collection_url }}" class="{% if request.page_type == 'collection' %}is-active{% endif %}">
+      {% render 'lustre-icon', name: 'grid', size: 21 %}
+      <span>Shop</span>
+    </a>
+    <a href="{{ routes.search_url }}" class="{% if request.page_type == 'search' %}is-active{% endif %}">
+      {% render 'lustre-icon', name: 'search', size: 21 %}
+      <span>Search</span>
+    </a>
+    {%- if shop.customer_accounts_enabled -%}
+      <a href="{{ routes.account_url }}" class="{% if request.page_type contains 'customers' %}is-active{% endif %}">
+        {% render 'lustre-icon', name: 'user', size: 21 %}
+        <span>Account</span>
+      </a>
+    {%- else -%}
+      <a href="{{ section.settings.featured_link | default: routes.all_products_collection_url }}">
+        {% render 'lustre-icon', name: 'heart', size: 21 %}
+        <span>Featured</span>
+      </a>
+    {%- endif -%}
+    <a href="{{ routes.cart_url }}" class="{% if request.page_type == 'cart' %}is-active{% endif %}">
+      {% render 'lustre-icon', name: 'cart', size: 21 %}
+      <span>Bag</span>
+      {%- if cart.item_count > 0 -%}<b>{{ cart.item_count }}</b>{%- endif -%}
+    </a>
+  </nav>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Lustre mobile navigation",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show mobile navigation",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "shop_link",
+      "label": "Shop link"
+    },
+    {
+      "type": "url",
+      "id": "featured_link",
+      "label": "Featured link"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

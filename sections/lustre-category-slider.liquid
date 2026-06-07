@@ -1,0 +1,145 @@
+<section
+  class="lustre-category color-{{ section.settings.color_scheme }} gradient"
+  style="--lustre-padding-top: {{ section.settings.padding_top }}px; --lustre-padding-bottom: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="page-width">
+    <header class="lustre-section-heading lustre-section-heading--center">
+      {%- if section.settings.eyebrow != blank -%}<p class="lustre-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+    </header>
+
+    <div class="lustre-category__track">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign category_collection = block.settings.collection
+          assign category_image = block.settings.image | default: category_collection.featured_image
+          assign category_title = block.settings.title | default: category_collection.title
+          assign category_url = category_collection.url | default: routes.all_products_collection_url
+        -%}
+        <a class="lustre-category-card" href="{{ category_url }}" {{ block.shopify_attributes }}>
+          <span class="lustre-category-card__media">
+            {%- if category_image != blank -%}
+              {{
+                category_image
+                | image_url: width: 600
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '180, 280, 400, 600',
+                  sizes: '(min-width: 750px) 180px, 125px',
+                  alt: category_title
+              }}
+            {%- else -%}
+              {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </span>
+          <strong>{{ category_title | default: 'Curated category' }}</strong>
+          {%- if block.settings.subtitle != blank -%}<small>{{ block.settings.subtitle }}</small>{%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lustre category slider",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Find your favorite"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Made for every ritual"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-2"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 64
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Shop now"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Lustre category slider",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

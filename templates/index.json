@@ -1,0 +1,277 @@
+{
+  "sections": {
+    "hero": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Quiet luxury,<br>made for living",
+            "heading_size": "h0"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Elevated fashion, beauty, and lifestyle essentials for a more considered everyday.",
+            "text_style": "body"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop the collection",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "Our story",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "buttons"
+      ],
+      "settings": {
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "image_behavior": "zoom-in",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "left",
+        "show_text_below": false
+      }
+    },
+    "categories": {
+      "type": "lustre-category-slider",
+      "blocks": {
+        "category_1": {
+          "type": "category",
+          "settings": {
+            "title": "New arrivals",
+            "subtitle": "Freshly selected"
+          }
+        },
+        "category_2": {
+          "type": "category",
+          "settings": {
+            "title": "Bestsellers",
+            "subtitle": "Most loved"
+          }
+        },
+        "category_3": {
+          "type": "category",
+          "settings": {
+            "title": "Beauty",
+            "subtitle": "Daily rituals"
+          }
+        },
+        "category_4": {
+          "type": "category",
+          "settings": {
+            "title": "Lifestyle",
+            "subtitle": "For your space"
+          }
+        },
+        "category_5": {
+          "type": "category",
+          "settings": {
+            "title": "Gifts",
+            "subtitle": "Thoughtfully chosen"
+          }
+        }
+      },
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4",
+        "category_5"
+      ],
+      "settings": {
+        "eyebrow": "Find your favorite",
+        "heading": "Made for every ritual",
+        "heading_size": "h1",
+        "color_scheme": "scheme-2",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "collections": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_1",
+        "collection_2",
+        "collection_3"
+      ],
+      "settings": {
+        "title": "Shop by collection",
+        "heading_size": "h1",
+        "image_ratio": "portrait",
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_view_all": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Bestsellers",
+        "heading_size": "h1",
+        "description": "The pieces our community returns to, season after season.",
+        "show_description": true,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "color_scheme": "scheme-1",
+        "image_ratio": "portrait",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "offer": {
+      "type": "lustre-offer-banner",
+      "settings": {
+        "image_position": "left",
+        "eyebrow": "A little something extra",
+        "heading": "20% off your first order",
+        "heading_size": "h1",
+        "text": "<p>Join our world and discover thoughtful edits, new arrivals, and private offers.</p>",
+        "button_label": "Discover more",
+        "note": "Terms apply. New customers only.",
+        "section_color_scheme": "scheme-1",
+        "content_color_scheme": "scheme-3",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "testimonials": {
+      "type": "lustre-testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Beautifully made, thoughtfully packaged, and even better in person.",
+            "author": "Maya R.",
+            "detail": "Verified customer"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The quality is exceptional. It has instantly become part of my daily routine.",
+            "author": "Amelia T.",
+            "detail": "Verified customer"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Everything feels considered, from the design to the smallest detail.",
+            "author": "Sofia K.",
+            "detail": "Verified customer"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "eyebrow": "Loved by you",
+        "heading": "Notes from our community",
+        "heading_size": "h1",
+        "color_scheme": "scheme-2",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "A more beautiful inbox",
+            "heading_size": "h1"
+          }
+        },
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>New arrivals, inspiration, and private offers, delivered occasionally.</p>"
+          }
+        },
+        "form": {
+          "type": "email_form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "form"
+      ],
+      "settings": {
+        "color_scheme": "scheme-4",
+        "full_width": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "categories",
+    "collections",
+    "bestsellers",
+    "offer",
+    "testimonials",
+    "newsletter"
+  ]
+}
