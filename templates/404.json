@@ -14,6 +14,67 @@
       "disabled": true,
       "settings": {}
     },
+    "lustre_category_slider_TtqfXR": {
+      "type": "lustre-category-slider",
+      "blocks": {
+        "category_kdmxrd": {
+          "type": "category",
+          "settings": {
+            "collection": "bag",
+            "title": "Bag",
+            "subtitle": "Shop now"
+          }
+        },
+        "category_7pikDX": {
+          "type": "category",
+          "settings": {
+            "collection": "laptop",
+            "title": "Laptop",
+            "subtitle": "Shop now"
+          }
+        },
+        "category_zkTC9i": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "subtitle": "Shop now"
+          }
+        },
+        "category_gQMVH7": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "subtitle": "Shop now"
+          }
+        },
+        "category_CY9q8t": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "subtitle": "Shop now"
+          }
+        }
+      },
+      "block_order": [
+        "category_kdmxrd",
+        "category_7pikDX",
+        "category_zkTC9i",
+        "category_gQMVH7",
+        "category_CY9q8t"
+      ],
+      "name": "Lustre category slider",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "heading_size": "h2",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "image_banner_bxB48B": {
       "type": "image-banner",
       "blocks": {
@@ -66,6 +127,7 @@
   },
   "order": [
     "main",
+    "lustre_category_slider_TtqfXR",
     "image_banner_bxB48B"
   ]
 }
