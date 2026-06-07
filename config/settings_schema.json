@@ -11,6 +11,10 @@
     "name": "t:settings_schema.logo.name",
     "settings": [
       {
+        "type": "paragraph",
+        "content": "Use these settings for your main header logo and favicon."
+      },
+      {
         "type": "image_picker",
         "id": "logo",
         "label": "t:settings_schema.logo.settings.logo_image.label",

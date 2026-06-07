@@ -1,7 +1,7 @@
 {
   "sections": {
     "hero": {
-      "type": "lustre-hero-media",
+      "type": "hero-banner",
       "settings": {
         "media_type": "image",
         "heading": "Quiet luxury, made for living",

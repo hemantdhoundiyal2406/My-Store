@@ -185,8 +185,8 @@
             "color_scheme": "scheme-1"
           }
         },
-        "lustre-mobile-bottom-nav": {
-          "type": "lustre-mobile-bottom-nav",
+        "mobile-bottom-nav": {
+          "type": "mobile-bottom-nav",
           "blocks": {
             "home": {
               "type": "nav_item",
