@@ -3,6 +3,29 @@
   "presets": {
     "Default": {
       "logo_width": 140,
+      "logo_width_desktop": 180,
+      "logo_width_mobile": 140,
+      "theme_hero_media_type": "image",
+      "theme_hero_color_scheme": "scheme-3",
+      "theme_hero_overlay_color": "#211E1B",
+      "theme_hero_overlay_opacity": 28,
+      "theme_mobile_nav_enabled": true,
+      "theme_mobile_nav_color_scheme": "scheme-1",
+      "theme_mobile_nav_item_1_role": "home",
+      "theme_mobile_nav_item_1_icon_svg": "home",
+      "theme_mobile_nav_item_1_label": "Home",
+      "theme_mobile_nav_item_2_role": "search",
+      "theme_mobile_nav_item_2_icon_svg": "search",
+      "theme_mobile_nav_item_2_label": "Search",
+      "theme_mobile_nav_item_3_role": "collections",
+      "theme_mobile_nav_item_3_icon_svg": "grid",
+      "theme_mobile_nav_item_3_label": "Collections",
+      "theme_mobile_nav_item_4_role": "account",
+      "theme_mobile_nav_item_4_icon_svg": "user",
+      "theme_mobile_nav_item_4_label": "Account",
+      "theme_mobile_nav_item_5_role": "cart",
+      "theme_mobile_nav_item_5_icon_svg": "cart",
+      "theme_mobile_nav_item_5_label": "Cart",
       "color_schemes": {
         "scheme-1": {
           "settings": {
@@ -187,61 +210,8 @@
         },
         "mobile-bottom-nav": {
           "type": "mobile-bottom-nav",
-          "blocks": {
-            "home": {
-              "type": "nav_item",
-              "settings": {
-                "nav_role": "home",
-                "icon_svg": "home",
-                "label": "Home",
-                "link": ""
-              }
-            },
-            "search": {
-              "type": "nav_item",
-              "settings": {
-                "nav_role": "search",
-                "icon_svg": "search",
-                "label": "Search",
-                "link": ""
-              }
-            },
-            "collections": {
-              "type": "nav_item",
-              "settings": {
-                "nav_role": "collections",
-                "icon_svg": "grid",
-                "label": "Collections",
-                "link": ""
-              }
-            },
-            "account": {
-              "type": "nav_item",
-              "settings": {
-                "nav_role": "account",
-                "icon_svg": "user",
-                "label": "Account",
-                "link": ""
-              }
-            },
-            "cart": {
-              "type": "nav_item",
-              "settings": {
-                "nav_role": "cart",
-                "icon_svg": "cart",
-                "label": "Cart",
-                "link": ""
-              }
-            }
-          },
-          "block_order": [
-            "home",
-            "search",
-            "collections",
-            "account",
-            "cart"
-          ],
           "settings": {
+            "use_theme_mobile_nav_settings": true,
             "show_navigation": true,
             "color_scheme": "scheme-1"
           }

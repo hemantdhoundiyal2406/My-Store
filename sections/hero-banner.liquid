@@ -9,10 +9,25 @@
 {% endcomment %}
 
 {%- liquid
+  assign hero_media_type = section.settings.media_type
   assign desktop_image = section.settings.desktop_image
   assign mobile_image = section.settings.mobile_image
   assign desktop_video = section.settings.desktop_video
   assign mobile_video = section.settings.mobile_video
+  assign hero_color_scheme = section.settings.color_scheme
+  assign hero_overlay_color = section.settings.overlay_color
+  assign hero_overlay_opacity = section.settings.overlay_opacity
+
+  if section.settings.use_theme_hero_media_settings
+    assign hero_media_type = settings.theme_hero_media_type | default: hero_media_type
+    assign desktop_image = settings.theme_hero_desktop_image | default: desktop_image
+    assign mobile_image = settings.theme_hero_mobile_image | default: mobile_image
+    assign desktop_video = settings.theme_hero_desktop_video | default: desktop_video
+    assign mobile_video = settings.theme_hero_mobile_video | default: mobile_video
+    assign hero_color_scheme = settings.theme_hero_color_scheme | default: hero_color_scheme
+    assign hero_overlay_color = settings.theme_hero_overlay_color | default: hero_overlay_color
+    assign hero_overlay_opacity = settings.theme_hero_overlay_opacity | default: hero_overlay_opacity
+  endif
 
   if desktop_image == blank
     assign desktop_image = mobile_image
@@ -31,11 +46,11 @@
   endif
 
   assign show_video = false
-  if section.settings.media_type == 'video' and desktop_video != blank
+  if hero_media_type == 'video' and desktop_video != blank
     assign show_video = true
   endif
 
-  assign overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0
+  assign overlay_alpha = hero_overlay_opacity | divided_by: 100.0
   assign fetch_priority = 'auto'
   if section.index == 1
     assign fetch_priority = 'high'
@@ -44,7 +59,7 @@
 
 {%- style -%}
   #LustreHero-{{ section.id }}::after {
-    background: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }};
+    background: {{ hero_overlay_color | color_modify: 'alpha', overlay_alpha }};
   }
 {%- endstyle -%}
 
@@ -123,7 +138,7 @@
   </div>
 
   <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <div class="lustre-hero__box banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+    <div class="lustre-hero__box banner__box content-container content-container--full-width-mobile color-{{ hero_color_scheme }} gradient">
       {%- if section.settings.heading != blank -%}
         <h1 class="lustre-hero__heading banner__heading inline-richtext {{ section.settings.heading_size }}">
           {{ section.settings.heading }}
@@ -163,6 +178,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "use_theme_hero_media_settings",
+      "label": "Use Theme Settings hero media defaults",
+      "default": true
+    },
     {
       "type": "select",
       "id": "media_type",

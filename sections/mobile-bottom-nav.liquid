@@ -1,19 +1,115 @@
 {% comment %}
   Recommended mobile footer icon image size: 64 x 64 px.
-  Add or edit nav items from the Shopify customizer in the Lustre mobile navigation section.
 {% endcomment %}
 
-{%- if section.settings.show_navigation and section.blocks.size > 0 -%}
-  <nav
-    class="lustre-mobile-nav color-{{ section.settings.color_scheme }} gradient"
-    style="--lustre-mobile-nav-columns: {{ section.blocks.size }};"
-    aria-label="Quick navigation"
-  >
-    {%- for block in section.blocks -%}
+{%- liquid
+  if section.settings.use_theme_mobile_nav_settings
+    assign nav_enabled = settings.theme_mobile_nav_enabled
+    assign nav_color_scheme = settings.theme_mobile_nav_color_scheme | default: section.settings.color_scheme
+  else
+    assign nav_enabled = section.settings.show_navigation
+    assign nav_color_scheme = section.settings.color_scheme | default: settings.theme_mobile_nav_color_scheme
+  endif
+-%}
+
+{%- if nav_enabled -%}
+  <nav class="lustre-mobile-nav color-{{ nav_color_scheme }} gradient" style="--lustre-mobile-nav-columns: 5;" aria-label="Quick navigation">
+    {%- for item_index in (1..5) -%}
       {%- liquid
-        assign nav_role = block.settings.nav_role
-        assign nav_link = block.settings.link
+        assign nav_role = blank
+        assign nav_icon_svg = blank
+        assign nav_icon_image = blank
+        assign nav_label = blank
+        assign nav_link = blank
         assign is_active = false
+
+        case item_index
+          when 1
+            if section.settings.use_theme_mobile_nav_settings
+              assign nav_role = settings.theme_mobile_nav_item_1_role | default: section.settings.item_1_role
+              assign nav_icon_svg = settings.theme_mobile_nav_item_1_icon_svg | default: section.settings.item_1_icon_svg
+              assign nav_icon_image = settings.theme_mobile_nav_item_1_icon_image | default: section.settings.item_1_icon_image
+              assign nav_label = settings.theme_mobile_nav_item_1_label | default: section.settings.item_1_label
+              assign nav_link = settings.theme_mobile_nav_item_1_link | default: section.settings.item_1_link
+            else
+              assign nav_role = section.settings.item_1_role | default: settings.theme_mobile_nav_item_1_role
+              assign nav_icon_svg = section.settings.item_1_icon_svg | default: settings.theme_mobile_nav_item_1_icon_svg
+              assign nav_icon_image = section.settings.item_1_icon_image | default: settings.theme_mobile_nav_item_1_icon_image
+              assign nav_label = section.settings.item_1_label | default: settings.theme_mobile_nav_item_1_label
+              assign nav_link = section.settings.item_1_link | default: settings.theme_mobile_nav_item_1_link
+            endif
+          when 2
+            if section.settings.use_theme_mobile_nav_settings
+              assign nav_role = settings.theme_mobile_nav_item_2_role | default: section.settings.item_2_role
+              assign nav_icon_svg = settings.theme_mobile_nav_item_2_icon_svg | default: section.settings.item_2_icon_svg
+              assign nav_icon_image = settings.theme_mobile_nav_item_2_icon_image | default: section.settings.item_2_icon_image
+              assign nav_label = settings.theme_mobile_nav_item_2_label | default: section.settings.item_2_label
+              assign nav_link = settings.theme_mobile_nav_item_2_link | default: section.settings.item_2_link
+            else
+              assign nav_role = section.settings.item_2_role | default: settings.theme_mobile_nav_item_2_role
+              assign nav_icon_svg = section.settings.item_2_icon_svg | default: settings.theme_mobile_nav_item_2_icon_svg
+              assign nav_icon_image = section.settings.item_2_icon_image | default: settings.theme_mobile_nav_item_2_icon_image
+              assign nav_label = section.settings.item_2_label | default: settings.theme_mobile_nav_item_2_label
+              assign nav_link = section.settings.item_2_link | default: settings.theme_mobile_nav_item_2_link
+            endif
+          when 3
+            if section.settings.use_theme_mobile_nav_settings
+              assign nav_role = settings.theme_mobile_nav_item_3_role | default: section.settings.item_3_role
+              assign nav_icon_svg = settings.theme_mobile_nav_item_3_icon_svg | default: section.settings.item_3_icon_svg
+              assign nav_icon_image = settings.theme_mobile_nav_item_3_icon_image | default: section.settings.item_3_icon_image
+              assign nav_label = settings.theme_mobile_nav_item_3_label | default: section.settings.item_3_label
+              assign nav_link = settings.theme_mobile_nav_item_3_link | default: section.settings.item_3_link
+            else
+              assign nav_role = section.settings.item_3_role | default: settings.theme_mobile_nav_item_3_role
+              assign nav_icon_svg = section.settings.item_3_icon_svg | default: settings.theme_mobile_nav_item_3_icon_svg
+              assign nav_icon_image = section.settings.item_3_icon_image | default: settings.theme_mobile_nav_item_3_icon_image
+              assign nav_label = section.settings.item_3_label | default: settings.theme_mobile_nav_item_3_label
+              assign nav_link = section.settings.item_3_link | default: settings.theme_mobile_nav_item_3_link
+            endif
+          when 4
+            if section.settings.use_theme_mobile_nav_settings
+              assign nav_role = settings.theme_mobile_nav_item_4_role | default: section.settings.item_4_role
+              assign nav_icon_svg = settings.theme_mobile_nav_item_4_icon_svg | default: section.settings.item_4_icon_svg
+              assign nav_icon_image = settings.theme_mobile_nav_item_4_icon_image | default: section.settings.item_4_icon_image
+              assign nav_label = settings.theme_mobile_nav_item_4_label | default: section.settings.item_4_label
+              assign nav_link = settings.theme_mobile_nav_item_4_link | default: section.settings.item_4_link
+            else
+              assign nav_role = section.settings.item_4_role | default: settings.theme_mobile_nav_item_4_role
+              assign nav_icon_svg = section.settings.item_4_icon_svg | default: settings.theme_mobile_nav_item_4_icon_svg
+              assign nav_icon_image = section.settings.item_4_icon_image | default: settings.theme_mobile_nav_item_4_icon_image
+              assign nav_label = section.settings.item_4_label | default: settings.theme_mobile_nav_item_4_label
+              assign nav_link = section.settings.item_4_link | default: settings.theme_mobile_nav_item_4_link
+            endif
+          when 5
+            if section.settings.use_theme_mobile_nav_settings
+              assign nav_role = settings.theme_mobile_nav_item_5_role | default: section.settings.item_5_role
+              assign nav_icon_svg = settings.theme_mobile_nav_item_5_icon_svg | default: section.settings.item_5_icon_svg
+              assign nav_icon_image = settings.theme_mobile_nav_item_5_icon_image | default: section.settings.item_5_icon_image
+              assign nav_label = settings.theme_mobile_nav_item_5_label | default: section.settings.item_5_label
+              assign nav_link = settings.theme_mobile_nav_item_5_link | default: section.settings.item_5_link
+            else
+              assign nav_role = section.settings.item_5_role | default: settings.theme_mobile_nav_item_5_role
+              assign nav_icon_svg = section.settings.item_5_icon_svg | default: settings.theme_mobile_nav_item_5_icon_svg
+              assign nav_icon_image = section.settings.item_5_icon_image | default: settings.theme_mobile_nav_item_5_icon_image
+              assign nav_label = section.settings.item_5_label | default: settings.theme_mobile_nav_item_5_label
+              assign nav_link = section.settings.item_5_link | default: settings.theme_mobile_nav_item_5_link
+            endif
+        endcase
+
+        if nav_label == blank
+          case nav_role
+            when 'home'
+              assign nav_label = 'Home'
+            when 'search'
+              assign nav_label = 'Search'
+            when 'collections'
+              assign nav_label = 'Collections'
+            when 'account'
+              assign nav_label = 'Account'
+            when 'cart'
+              assign nav_label = 'Cart'
+          endcase
+        endif
 
         case nav_role
           when 'home'
@@ -68,33 +164,31 @@
             endif
         endcase
       -%}
-      <a
-        href="{{ nav_link }}"
-        class="{% if is_active %}is-active{% endif %}"
-        {% if is_active %}aria-current="page"{% endif %}
-        {{ block.shopify_attributes }}
-      >
-        <span class="lustre-mobile-nav__icon-wrapper">
-          {%- if block.settings.icon_image != blank -%}
-            {{
-              block.settings.icon_image
-              | image_url: width: 64
-              | image_tag:
-                class: 'lustre-mobile-nav__icon-image',
-                widths: '32, 48, 64',
-                sizes: '32px',
-                alt: block.settings.label
-            }}
-          {%- else -%}
-            {% render 'lustre-icon', name: block.settings.icon_svg, size: 21 %}
-          {%- endif -%}
 
-          {%- if nav_role == 'cart' and cart.item_count > 0 -%}
-            <b>{{ cart.item_count }}</b>
-          {%- endif -%}
-        </span>
-        <span>{{ block.settings.label }}</span>
-      </a>
+      {%- if nav_label != blank -%}
+        <a href="{{ nav_link }}" class="{% if is_active %}is-active{% endif %}" {% if is_active %}aria-current="page"{% endif %}>
+          <span class="lustre-mobile-nav__icon-wrapper">
+            {%- if nav_icon_image != blank -%}
+              {{
+                nav_icon_image
+                | image_url: width: 64
+                | image_tag:
+                  class: 'lustre-mobile-nav__icon-image',
+                  widths: '32, 48, 64',
+                  sizes: '32px',
+                  alt: nav_label
+              }}
+            {%- else -%}
+              {% render 'lustre-icon', name: nav_icon_svg, size: 21 %}
+            {%- endif -%}
+
+            {%- if nav_role == 'cart' and cart.item_count > 0 -%}
+              <b>{{ cart.item_count }}</b>
+            {%- endif -%}
+          </span>
+          <span>{{ nav_label }}</span>
+        </a>
+      {%- endif -%}
     {%- endfor -%}
   </nav>
 {%- endif -%}
@@ -104,8 +198,17 @@
   "name": "Mobile bottom nav",
   "tag": "section",
   "class": "section-mobile-bottom-nav",
-  "max_blocks": 5,
   "settings": [
+    {
+      "type": "paragraph",
+      "content": "Use Theme Settings to control the global mobile bottom navbar, or turn that off here to override it on this section."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_mobile_nav_settings",
+      "label": "Use Theme Settings mobile navbar defaults",
+      "default": true
+    },
     {
       "type": "checkbox",
       "id": "show_navigation",
@@ -117,104 +220,256 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
-    }
-  ],
-  "blocks": [
+    },
     {
-      "type": "nav_item",
-      "name": "Nav item",
-      "settings": [
-        {
-          "type": "select",
-          "id": "nav_role",
-          "label": "Navigation type",
-          "default": "home",
-          "options": [
-            {
-              "value": "home",
-              "label": "Home"
-            },
-            {
-              "value": "search",
-              "label": "Search"
-            },
-            {
-              "value": "collections",
-              "label": "Collections"
-            },
-            {
-              "value": "account",
-              "label": "Account"
-            },
-            {
-              "value": "cart",
-              "label": "Cart"
-            },
-            {
-              "value": "custom",
-              "label": "Custom"
-            }
-          ]
-        },
-        {
-          "type": "select",
-          "id": "icon_svg",
-          "label": "SVG icon",
-          "default": "home",
-          "options": [
-            {
-              "value": "home",
-              "label": "Home"
-            },
-            {
-              "value": "search",
-              "label": "Search"
-            },
-            {
-              "value": "grid",
-              "label": "Collections"
-            },
-            {
-              "value": "user",
-              "label": "Account"
-            },
-            {
-              "value": "cart",
-              "label": "Cart"
-            },
-            {
-              "value": "heart",
-              "label": "Wishlist"
-            },
-            {
-              "value": "star",
-              "label": "Star"
-            },
-            {
-              "value": "truck",
-              "label": "Shipping"
-            }
-          ]
-        },
-        {
-          "type": "image_picker",
-          "id": "icon_image",
-          "label": "Custom icon image",
-          "info": "Recommended size: 64 x 64 px. If uploaded, this image replaces the SVG icon."
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Label",
-          "default": "Home"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Navigation link",
-          "info": "Leave blank to use the default route for the selected navigation type."
-        }
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "select",
+      "id": "item_1_role",
+      "label": "Item 1 type",
+      "default": "home",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "collections", "label": "Collections" },
+        { "value": "account", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "custom", "label": "Custom" }
       ]
+    },
+    {
+      "type": "select",
+      "id": "item_1_icon_svg",
+      "label": "Item 1 SVG icon",
+      "default": "home",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "grid", "label": "Collections" },
+        { "value": "user", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "heart", "label": "Wishlist" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Shipping" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "item_1_icon_image",
+      "label": "Item 1 custom icon image"
+    },
+    {
+      "type": "text",
+      "id": "item_1_label",
+      "label": "Item 1 label",
+      "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "item_1_link",
+      "label": "Item 1 link"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "select",
+      "id": "item_2_role",
+      "label": "Item 2 type",
+      "default": "search",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "collections", "label": "Collections" },
+        { "value": "account", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "item_2_icon_svg",
+      "label": "Item 2 SVG icon",
+      "default": "search",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "grid", "label": "Collections" },
+        { "value": "user", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "heart", "label": "Wishlist" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Shipping" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "item_2_icon_image",
+      "label": "Item 2 custom icon image"
+    },
+    {
+      "type": "text",
+      "id": "item_2_label",
+      "label": "Item 2 label",
+      "default": "Search"
+    },
+    {
+      "type": "url",
+      "id": "item_2_link",
+      "label": "Item 2 link"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "select",
+      "id": "item_3_role",
+      "label": "Item 3 type",
+      "default": "collections",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "collections", "label": "Collections" },
+        { "value": "account", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "item_3_icon_svg",
+      "label": "Item 3 SVG icon",
+      "default": "grid",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "grid", "label": "Collections" },
+        { "value": "user", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "heart", "label": "Wishlist" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Shipping" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "item_3_icon_image",
+      "label": "Item 3 custom icon image"
+    },
+    {
+      "type": "text",
+      "id": "item_3_label",
+      "label": "Item 3 label",
+      "default": "Collections"
+    },
+    {
+      "type": "url",
+      "id": "item_3_link",
+      "label": "Item 3 link"
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "select",
+      "id": "item_4_role",
+      "label": "Item 4 type",
+      "default": "account",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "collections", "label": "Collections" },
+        { "value": "account", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "item_4_icon_svg",
+      "label": "Item 4 SVG icon",
+      "default": "user",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "grid", "label": "Collections" },
+        { "value": "user", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "heart", "label": "Wishlist" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Shipping" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "item_4_icon_image",
+      "label": "Item 4 custom icon image"
+    },
+    {
+      "type": "text",
+      "id": "item_4_label",
+      "label": "Item 4 label",
+      "default": "Account"
+    },
+    {
+      "type": "url",
+      "id": "item_4_link",
+      "label": "Item 4 link"
+    },
+    {
+      "type": "header",
+      "content": "Item 5"
+    },
+    {
+      "type": "select",
+      "id": "item_5_role",
+      "label": "Item 5 type",
+      "default": "cart",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "collections", "label": "Collections" },
+        { "value": "account", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "item_5_icon_svg",
+      "label": "Item 5 SVG icon",
+      "default": "cart",
+      "options": [
+        { "value": "home", "label": "Home" },
+        { "value": "search", "label": "Search" },
+        { "value": "grid", "label": "Collections" },
+        { "value": "user", "label": "Account" },
+        { "value": "cart", "label": "Cart" },
+        { "value": "heart", "label": "Wishlist" },
+        { "value": "star", "label": "Star" },
+        { "value": "truck", "label": "Shipping" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "item_5_icon_image",
+      "label": "Item 5 custom icon image"
+    },
+    {
+      "type": "text",
+      "id": "item_5_label",
+      "label": "Item 5 label",
+      "default": "Cart"
+    },
+    {
+      "type": "url",
+      "id": "item_5_link",
+      "label": "Item 5 link"
     }
   ],
   "presets": [

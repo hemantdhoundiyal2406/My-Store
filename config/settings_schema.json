@@ -8,34 +8,410 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
-    "name": "t:settings_schema.logo.name",
+    "name": "Brand settings",
     "settings": [
       {
         "type": "paragraph",
-        "content": "Use these settings for your main header logo and favicon."
+        "content": "Control your main brand logo and favicon here."
       },
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "t:settings_schema.logo.settings.logo_image.label",
+        "label": "Logo image",
         "info": "Recommended sizes: desktop 240 x 80 px, mobile 180 x 60 px."
       },
       {
         "type": "range",
-        "id": "logo_width",
-        "min": 50,
-        "max": 300,
+        "id": "logo_width_desktop",
+        "min": 80,
+        "max": 360,
         "step": 10,
-        "default": 100,
+        "default": 180,
         "unit": "px",
-        "label": "t:settings_schema.logo.settings.logo_width.label",
-        "info": "Adjust the displayed width after uploading your logo."
+        "label": "Logo width desktop"
+      },
+      {
+        "type": "range",
+        "id": "logo_width_mobile",
+        "min": 60,
+        "max": 280,
+        "step": 10,
+        "default": 140,
+        "unit": "px",
+        "label": "Logo width mobile"
       },
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "t:settings_schema.logo.settings.favicon.label",
+        "label": "Favicon",
         "info": "Recommended size: 32 x 32 px or 64 x 64 px."
+      }
+    ]
+  },
+  {
+    "name": "Hero media settings",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "These settings can be used as theme-wide defaults for the hero banner section."
+      },
+      {
+        "type": "select",
+        "id": "theme_hero_media_type",
+        "label": "Hero media type",
+        "default": "image",
+        "options": [
+          {
+            "value": "image",
+            "label": "Image"
+          },
+          {
+            "value": "video",
+            "label": "Video"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_hero_desktop_image",
+        "label": "Hero desktop image",
+        "info": "Recommended size: 1920 x 900 px."
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_hero_mobile_image",
+        "label": "Hero mobile image",
+        "info": "Recommended size: 1080 x 1400 px."
+      },
+      {
+        "type": "video",
+        "id": "theme_hero_desktop_video",
+        "label": "Hero desktop video",
+        "info": "Recommended size: 1920 x 900 px MP4."
+      },
+      {
+        "type": "video",
+        "id": "theme_hero_mobile_video",
+        "label": "Hero mobile video",
+        "info": "Recommended size: 1080 x 1400 px MP4."
+      },
+      {
+        "type": "color_scheme",
+        "id": "theme_hero_color_scheme",
+        "label": "Hero color scheme",
+        "default": "scheme-3"
+      },
+      {
+        "type": "color",
+        "id": "theme_hero_overlay_color",
+        "label": "Hero overlay color",
+        "default": "#211E1B"
+      },
+      {
+        "type": "range",
+        "id": "theme_hero_overlay_opacity",
+        "label": "Hero overlay opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 28
+      }
+    ]
+  },
+  {
+    "name": "Mobile bottom navbar settings",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "These settings can be used as theme-wide defaults for the mobile bottom navbar."
+      },
+      {
+        "type": "checkbox",
+        "id": "theme_mobile_nav_enabled",
+        "label": "Enable mobile bottom navbar",
+        "default": true
+      },
+      {
+        "type": "color_scheme",
+        "id": "theme_mobile_nav_color_scheme",
+        "label": "Mobile navbar color scheme",
+        "default": "scheme-1"
+      },
+      {
+        "type": "header",
+        "content": "Item 1"
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_1_role",
+        "label": "Item 1 type",
+        "default": "home",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "collections", "label": "Collections" },
+          { "value": "account", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_1_icon_svg",
+        "label": "Item 1 SVG icon",
+        "default": "home",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "grid", "label": "Collections" },
+          { "value": "user", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "heart", "label": "Wishlist" },
+          { "value": "star", "label": "Star" },
+          { "value": "truck", "label": "Shipping" }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_mobile_nav_item_1_icon_image",
+        "label": "Item 1 custom icon image"
+      },
+      {
+        "type": "text",
+        "id": "theme_mobile_nav_item_1_label",
+        "label": "Item 1 label",
+        "default": "Home"
+      },
+      {
+        "type": "url",
+        "id": "theme_mobile_nav_item_1_link",
+        "label": "Item 1 link"
+      },
+      {
+        "type": "header",
+        "content": "Item 2"
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_2_role",
+        "label": "Item 2 type",
+        "default": "search",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "collections", "label": "Collections" },
+          { "value": "account", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_2_icon_svg",
+        "label": "Item 2 SVG icon",
+        "default": "search",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "grid", "label": "Collections" },
+          { "value": "user", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "heart", "label": "Wishlist" },
+          { "value": "star", "label": "Star" },
+          { "value": "truck", "label": "Shipping" }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_mobile_nav_item_2_icon_image",
+        "label": "Item 2 custom icon image"
+      },
+      {
+        "type": "text",
+        "id": "theme_mobile_nav_item_2_label",
+        "label": "Item 2 label",
+        "default": "Search"
+      },
+      {
+        "type": "url",
+        "id": "theme_mobile_nav_item_2_link",
+        "label": "Item 2 link"
+      },
+      {
+        "type": "header",
+        "content": "Item 3"
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_3_role",
+        "label": "Item 3 type",
+        "default": "collections",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "collections", "label": "Collections" },
+          { "value": "account", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_3_icon_svg",
+        "label": "Item 3 SVG icon",
+        "default": "grid",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "grid", "label": "Collections" },
+          { "value": "user", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "heart", "label": "Wishlist" },
+          { "value": "star", "label": "Star" },
+          { "value": "truck", "label": "Shipping" }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_mobile_nav_item_3_icon_image",
+        "label": "Item 3 custom icon image"
+      },
+      {
+        "type": "text",
+        "id": "theme_mobile_nav_item_3_label",
+        "label": "Item 3 label",
+        "default": "Collections"
+      },
+      {
+        "type": "url",
+        "id": "theme_mobile_nav_item_3_link",
+        "label": "Item 3 link"
+      },
+      {
+        "type": "header",
+        "content": "Item 4"
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_4_role",
+        "label": "Item 4 type",
+        "default": "account",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "collections", "label": "Collections" },
+          { "value": "account", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_4_icon_svg",
+        "label": "Item 4 SVG icon",
+        "default": "user",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "grid", "label": "Collections" },
+          { "value": "user", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "heart", "label": "Wishlist" },
+          { "value": "star", "label": "Star" },
+          { "value": "truck", "label": "Shipping" }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_mobile_nav_item_4_icon_image",
+        "label": "Item 4 custom icon image"
+      },
+      {
+        "type": "text",
+        "id": "theme_mobile_nav_item_4_label",
+        "label": "Item 4 label",
+        "default": "Account"
+      },
+      {
+        "type": "url",
+        "id": "theme_mobile_nav_item_4_link",
+        "label": "Item 4 link"
+      },
+      {
+        "type": "header",
+        "content": "Item 5"
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_5_role",
+        "label": "Item 5 type",
+        "default": "cart",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "collections", "label": "Collections" },
+          { "value": "account", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "theme_mobile_nav_item_5_icon_svg",
+        "label": "Item 5 SVG icon",
+        "default": "cart",
+        "options": [
+          { "value": "home", "label": "Home" },
+          { "value": "search", "label": "Search" },
+          { "value": "grid", "label": "Collections" },
+          { "value": "user", "label": "Account" },
+          { "value": "cart", "label": "Cart" },
+          { "value": "heart", "label": "Wishlist" },
+          { "value": "star", "label": "Star" },
+          { "value": "truck", "label": "Shipping" }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "theme_mobile_nav_item_5_icon_image",
+        "label": "Item 5 custom icon image"
+      },
+      {
+        "type": "text",
+        "id": "theme_mobile_nav_item_5_label",
+        "label": "Item 5 label",
+        "default": "Cart"
+      },
+      {
+        "type": "url",
+        "id": "theme_mobile_nav_item_5_link",
+        "label": "Item 5 link"
+      }
+    ]
+  },
+  {
+    "name": "Image size guide",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Header logo desktop: 240 x 80 px"
+      },
+      {
+        "type": "paragraph",
+        "content": "Header logo mobile: 180 x 60 px"
+      },
+      {
+        "type": "paragraph",
+        "content": "Hero desktop image: 1920 x 900 px | Hero mobile image: 1080 x 1400 px"
+      },
+      {
+        "type": "paragraph",
+        "content": "Hero desktop video: 1920 x 900 px MP4 | Hero mobile video: 1080 x 1400 px MP4"
+      },
+      {
+        "type": "paragraph",
+        "content": "Mobile footer icon image: 64 x 64 px | Favicon: 32 x 32 px or 64 x 64 px"
       }
     ]
   },

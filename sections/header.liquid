@@ -72,6 +72,18 @@
   }
 </style>
 
+{%- liquid
+  if section.settings.use_theme_brand_settings
+    assign header_logo = settings.logo | default: section.settings.logo_image
+    assign header_logo_width_desktop = settings.logo_width_desktop | default: settings.logo_width | default: section.settings.logo_width_desktop
+    assign header_logo_width_mobile = settings.logo_width_mobile | default: section.settings.logo_width_mobile | default: header_logo_width_desktop
+  else
+    assign header_logo = section.settings.logo_image | default: settings.logo
+    assign header_logo_width_desktop = section.settings.logo_width_desktop | default: settings.logo_width_desktop | default: settings.logo_width
+    assign header_logo_width_mobile = section.settings.logo_width_mobile | default: settings.logo_width_mobile | default: header_logo_width_desktop
+  endif
+-%}
+
 {%- style -%}
   .header {
     padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
@@ -94,6 +106,21 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .header__heading-logo-wrapper {
+    max-width: {{ header_logo_width_desktop }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header__heading-logo-wrapper {
+      max-width: {{ header_logo_width_mobile }}px;
+    }
+
+    .header__heading-logo {
+      width: 100%;
+      height: auto;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -111,6 +138,16 @@
 
   if section.settings.sticky_header_type != 'none'
     assign header_tag = 'sticky-header'
+  endif
+
+  if section.settings.use_theme_brand_settings
+    assign header_logo = settings.logo | default: section.settings.logo_image
+    assign header_logo_width_desktop = settings.logo_width_desktop | default: settings.logo_width | default: section.settings.logo_width_desktop
+    assign header_logo_width_mobile = settings.logo_width_mobile | default: section.settings.logo_width_mobile | default: header_logo_width_desktop
+  else
+    assign header_logo = section.settings.logo_image | default: settings.logo
+    assign header_logo_width_desktop = section.settings.logo_width_desktop | default: settings.logo_width_desktop | default: settings.logo_width
+    assign header_logo_width_mobile = section.settings.logo_width_mobile | default: settings.logo_width_mobile | default: header_logo_width_desktop
   endif
 %}
 
@@ -144,21 +181,21 @@
       - Mobile: 180 x 60 px
       Upload the logo from Theme settings > Logo.
     {% endcomment %}
-    {%- if section.settings.logo_position != 'middle-center' and settings.logo != blank -%}
+    {%- if section.settings.logo_position != 'middle-center' and header_logo != blank -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
             <div class="header__heading-logo-wrapper">
-              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-              {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-              {{ settings.logo | image_url: width: 600 | image_tag:
+              {%- assign logo_alt = header_logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = header_logo_width_desktop | divided_by: header_logo.aspect_ratio -%}
+              {% capture sizes %}(max-width: {{ header_logo_width_desktop | times: 2 }}px) 50vw, {{ header_logo_width_desktop }}px{% endcapture %}
+              {% capture widths %}{{ header_logo_width_mobile }}, {{ header_logo_width_desktop }}, {{ header_logo_width_desktop | times: 1.5 | round }}, {{ header_logo_width_desktop | times: 2 }}{% endcapture %}
+              {{ header_logo | image_url: width: 600 | image_tag:
                 class: 'header__heading-logo motion-reduce',
                 widths: widths,
                 height: logo_height,
-                width: settings.logo_width,
+                width: header_logo_width_desktop,
                 alt: logo_alt,
                 sizes: sizes,
                 preload: true
@@ -180,21 +217,21 @@
       endif
     %}
 
-    {%- if section.settings.logo_position == 'middle-center' and settings.logo != blank -%}
+    {%- if section.settings.logo_position == 'middle-center' and header_logo != blank -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
             <div class="header__heading-logo-wrapper">
-              {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-              {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-              {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-              {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-              {{ settings.logo | image_url: width: 600 | image_tag:
+              {%- assign logo_alt = header_logo.alt | default: shop.name | escape -%}
+              {%- assign logo_height = header_logo_width_desktop | divided_by: header_logo.aspect_ratio -%}
+              {% capture sizes %}(min-width: 750px) {{ header_logo_width_desktop }}px, 50vw{% endcapture %}
+              {% capture widths %}{{ header_logo_width_mobile }}, {{ header_logo_width_desktop }}, {{ header_logo_width_desktop | times: 1.5 | round }}, {{ header_logo_width_desktop | times: 2 }}{% endcapture %}
+              {{ header_logo | image_url: width: 600 | image_tag:
                 class: 'header__heading-logo',
                 widths: widths,
                 height: logo_height,
-                width: settings.logo_width,
+                width: header_logo_width_desktop,
                 alt: logo_alt,
                 sizes: sizes,
                 preload: true
@@ -452,7 +489,38 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Upload your main header logo from Theme settings > Logo."
+      "content": "Use Theme Settings for the main brand logo, or turn that off here to override it only in the header."
+    },
+    {
+      "type": "checkbox",
+      "id": "use_theme_brand_settings",
+      "label": "Use Theme Settings brand logo",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Header logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "min": 80,
+      "max": 360,
+      "step": 10,
+      "unit": "px",
+      "label": "Header logo width desktop",
+      "default": 180
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "min": 60,
+      "max": 280,
+      "step": 10,
+      "unit": "px",
+      "label": "Header logo width mobile",
+      "default": 140
     },
     {
       "type": "select",

@@ -3,6 +3,7 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
+        "use_theme_hero_media_settings": true,
         "media_type": "image",
         "heading": "Quiet luxury, made for living",
         "heading_size": "h0",
