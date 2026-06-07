@@ -1,50 +1,20 @@
 {
   "sections": {
     "hero": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Quiet luxury,<br>made for living",
-            "heading_size": "h0"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Elevated fashion, beauty, and lifestyle essentials for a more considered everyday.",
-            "text_style": "body"
-          }
-        },
-        "buttons": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop the collection",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "Our story",
-            "button_link_2": "",
-            "button_style_secondary_2": true
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "buttons"
-      ],
+      "type": "lustre-hero-media",
       "settings": {
-        "image_overlay_opacity": 30,
-        "image_height": "large",
-        "image_behavior": "zoom-in",
+        "media_type": "image",
+        "heading": "Quiet luxury, made for living",
+        "heading_size": "h0",
+        "subheading": "<p>Elevated fashion, beauty, and lifestyle essentials for a more considered everyday.</p>",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all",
         "desktop_content_position": "middle-left",
         "desktop_content_alignment": "left",
-        "show_text_box": false,
         "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "left",
-        "show_text_below": false
+        "overlay_color": "#211E1B",
+        "overlay_opacity": 28,
+        "mobile_content_alignment": "left"
       }
     },
     "categories": {

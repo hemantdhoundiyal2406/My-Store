@@ -1,0 +1,374 @@
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Recommended hero media upload sizes:
+  - Desktop image: 1920 x 900 px
+  - Mobile image: 1080 x 1400 px
+  - Desktop video: 1920 x 900 px MP4
+  - Mobile video: 1080 x 1400 px MP4
+{% endcomment %}
+
+{%- liquid
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image
+  assign desktop_video = section.settings.desktop_video
+  assign mobile_video = section.settings.mobile_video
+
+  if desktop_image == blank
+    assign desktop_image = mobile_image
+  endif
+
+  if mobile_image == blank
+    assign mobile_image = desktop_image
+  endif
+
+  if desktop_video == blank
+    assign desktop_video = mobile_video
+  endif
+
+  if mobile_video == blank
+    assign mobile_video = desktop_video
+  endif
+
+  assign show_video = false
+  if section.settings.media_type == 'video' and desktop_video != blank
+    assign show_video = true
+  endif
+
+  assign overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+-%}
+
+{%- style -%}
+  #LustreHero-{{ section.id }}::after {
+    background: {{ section.settings.overlay_color | color_modify: 'alpha', overlay_alpha }};
+  }
+{%- endstyle -%}
+
+<div
+  id="LustreHero-{{ section.id }}"
+  class="lustre-hero banner banner--content-align-{{ section.settings.desktop_content_alignment }} banner--content-align-mobile-{{ section.settings.mobile_content_alignment }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+>
+  <div class="lustre-hero__media-wrapper">
+    {%- if show_video -%}
+      <div class="lustre-hero__media banner__media lustre-hero__media--desktop media">
+        {{
+          desktop_video
+          | video_tag:
+            image_size: '2000x',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true
+        }}
+      </div>
+      <div class="lustre-hero__media banner__media lustre-hero__media--mobile media">
+        {{
+          mobile_video
+          | video_tag:
+            image_size: '1200x',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true
+        }}
+      </div>
+    {%- elsif desktop_image != blank or mobile_image != blank -%}
+      <div class="lustre-hero__media banner__media lustre-hero__media--image media">
+        <picture>
+          {%- if mobile_image != blank -%}
+            <source
+              media="(max-width: 749px)"
+              srcset="
+                {%- if mobile_image.width >= 375 -%}{{ mobile_image | image_url: width: 375 }} 375w,{%- endif -%}
+                {%- if mobile_image.width >= 550 -%}{{ mobile_image | image_url: width: 550 }} 550w,{%- endif -%}
+                {%- if mobile_image.width >= 750 -%}{{ mobile_image | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if mobile_image.width >= 900 -%}{{ mobile_image | image_url: width: 900 }} 900w,{%- endif -%}
+                {%- if mobile_image.width >= 1080 -%}{{ mobile_image | image_url: width: 1080 }} 1080w,{%- endif -%}
+                {{ mobile_image | image_url }} {{ mobile_image.width }}w
+              "
+              sizes="100vw"
+            >
+          {%- endif -%}
+          <img
+            srcset="
+              {%- if desktop_image.width >= 750 -%}{{ desktop_image | image_url: width: 750 }} 750w,{%- endif -%}
+              {%- if desktop_image.width >= 1100 -%}{{ desktop_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+              {%- if desktop_image.width >= 1500 -%}{{ desktop_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+              {%- if desktop_image.width >= 1780 -%}{{ desktop_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+              {%- if desktop_image.width >= 2000 -%}{{ desktop_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+              {%- if desktop_image.width >= 3000 -%}{{ desktop_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+              {{ desktop_image | image_url }} {{ desktop_image.width }}w
+            "
+            src="{{ desktop_image | image_url: width: 2000 }}"
+            sizes="100vw"
+            alt="{{ desktop_image.alt | default: section.settings.heading | escape }}"
+            class="lustre-hero__image"
+            width="{{ desktop_image.width }}"
+            height="{{ desktop_image.height }}"
+            fetchpriority="{{ fetch_priority }}"
+          >
+        </picture>
+      </div>
+    {%- else -%}
+      <div class="lustre-hero__media banner__media lustre-hero__media--placeholder media">
+        {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }} page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="lustre-hero__box banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="lustre-hero__heading banner__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h1>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div class="lustre-hero__subheading banner__text rte">
+          {{ section.settings.subheading }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="banner__buttons">
+          <a
+            {% if section.settings.button_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.button_link }}"
+            {% endif %}
+            class="button button--primary"
+          >
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Lustre hero media",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "default": "image",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image",
+      "info": "Recommended size: 1920 x 900 px."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image",
+      "info": "Recommended size: 1080 x 1400 px."
+    },
+    {
+      "type": "video",
+      "id": "desktop_video",
+      "label": "Desktop video",
+      "info": "Recommended size: 1920 x 900 px MP4."
+    },
+    {
+      "type": "video",
+      "id": "mobile_video",
+      "label": "Mobile video",
+      "info": "Recommended size: 1080 x 1400 px MP4."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Quiet luxury, made for living"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "default": "h0",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra large"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Elevated fashion, beauty, and lifestyle essentials for a more considered everyday.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button text",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-3"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#211E1B"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "label": "Desktop content position",
+      "default": "middle-left",
+      "options": [
+        {
+          "value": "top-left",
+          "label": "Top left"
+        },
+        {
+          "value": "top-center",
+          "label": "Top center"
+        },
+        {
+          "value": "top-right",
+          "label": "Top right"
+        },
+        {
+          "value": "middle-left",
+          "label": "Middle left"
+        },
+        {
+          "value": "middle-center",
+          "label": "Middle center"
+        },
+        {
+          "value": "middle-right",
+          "label": "Middle right"
+        },
+        {
+          "value": "bottom-left",
+          "label": "Bottom left"
+        },
+        {
+          "value": "bottom-center",
+          "label": "Bottom center"
+        },
+        {
+          "value": "bottom-right",
+          "label": "Bottom right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "label": "Desktop text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "label": "Mobile text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lustre hero media"
+    }
+  ]
+}
+{% endschema %}

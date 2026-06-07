@@ -184,6 +184,67 @@
           "settings": {
             "color_scheme": "scheme-1"
           }
+        },
+        "lustre-mobile-bottom-nav": {
+          "type": "lustre-mobile-bottom-nav",
+          "blocks": {
+            "home": {
+              "type": "nav_item",
+              "settings": {
+                "nav_role": "home",
+                "icon_svg": "home",
+                "label": "Home",
+                "link": ""
+              }
+            },
+            "search": {
+              "type": "nav_item",
+              "settings": {
+                "nav_role": "search",
+                "icon_svg": "search",
+                "label": "Search",
+                "link": ""
+              }
+            },
+            "collections": {
+              "type": "nav_item",
+              "settings": {
+                "nav_role": "collections",
+                "icon_svg": "grid",
+                "label": "Collections",
+                "link": ""
+              }
+            },
+            "account": {
+              "type": "nav_item",
+              "settings": {
+                "nav_role": "account",
+                "icon_svg": "user",
+                "label": "Account",
+                "link": ""
+              }
+            },
+            "cart": {
+              "type": "nav_item",
+              "settings": {
+                "nav_role": "cart",
+                "icon_svg": "cart",
+                "label": "Cart",
+                "link": ""
+              }
+            }
+          },
+          "block_order": [
+            "home",
+            "search",
+            "collections",
+            "account",
+            "cart"
+          ],
+          "settings": {
+            "show_navigation": true,
+            "color_scheme": "scheme-1"
+          }
         }
       }
     }
